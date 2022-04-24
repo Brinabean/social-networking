@@ -3,9 +3,6 @@ const { Thought, User } = require("../models");
 const thoughtController = {
   getAllThought(req, res) {
     Thought.find({})
-      .populate({
-        select: "-__v",
-      })
       .select("-__v")
       .sort({ _id: -1 })
       .then((dbUserData) => res.json(dbUserData))
@@ -17,9 +14,6 @@ const thoughtController = {
 
   getThoughtById({ params }, res) {
     Thought.findOne({ _id: params.id })
-      .populate({
-        select: "-__v",
-      })
       .select("-__v")
       .then((dbUserData) => res.json(dbUserData))
       .catch((err) => {
